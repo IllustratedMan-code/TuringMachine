@@ -10,7 +10,7 @@
             name = "turing-1.0.0";
             src = ./.;
             format = "pyproject";
-            propagatedBuildInputs = [ setuptools graphviz matplotlib ];
+            propagatedBuildInputs = [ setuptools graphviz matplotlib nltk ];
           };
         };
         devShells = {

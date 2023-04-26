@@ -3,5 +3,6 @@ name = "turing"
 version = "1.0.0"
 dependencies = [
     "graphviz",
-    "matplotlib"
+    "matplotlib",
+    "nltk"
 ]
