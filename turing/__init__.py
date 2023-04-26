@@ -1,6 +1,8 @@
 import graphviz
 from matplotlib import pyplot as plt, animation
 import matplotlib
+from .regex import *
+from .grammar import *
 
 
 class transition:
@@ -126,8 +128,11 @@ class machine:
 
         return self.transition_until_stop()
 
-    def plot(self, filename, engine="dot", attributes={}):
-        DG = graphviz.Digraph(filename=filename)
+    def plot(self, filename=None, engine="dot", attributes={}):
+        if filename:
+            DG = graphviz.Digraph(filename=filename)
+        else:
+            DG = graphviz.Digraph()
         DG.engine = engine
         DG.attr(**attributes)
         # nodes
@@ -173,7 +178,8 @@ class machine:
                     DG.edge(f"{k}:{v.compass}", key, label=label)
                 else:
                     DG.edge(k, key, label=label)
-        DG.render()
+        if filename:
+            DG.render()
         return DG
 
     def animate(self, filename=None):

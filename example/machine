@@ -1,0 +1,52 @@
+digraph {
+	fake [style=invisible]
+	fake -> S
+	S [labelfontcolor=black root=true shape=circle]
+	"SUBN 1" [labelfontcolor=black shape=circle]
+	"SUBN 2" [labelfontcolor=black shape=circle]
+	"SUBN 3" [labelfontcolor=black shape=circle]
+	"SUBN 4" [labelfontcolor=black shape=circle]
+	"SUBN 5" [labelfontcolor=black shape=circle]
+	"SUBN 6" [labelfontcolor=black shape=circle]
+	"SUBM 1" [labelfontcolor=black shape=circle]
+	"SUBM 2" [labelfontcolor=black shape=circle]
+	F [labelfontcolor=black shape=doublecircle]
+	S -> "SUBN 1" [label="a, X, ⟶
+"]
+	S -> "SUBM 1" [label="b, X, ⟶
+"]
+	S -> S [label="X, X, ⟶
+"]
+	S -> F [label="☐, ☐, ⟶
+"]
+	"SUBN 1" -> "SUBN 1" [label="X, X, ⟶
+a, a, ⟶
+"]
+	"SUBN 1" -> "SUBN 2" [label="b, X, ⟶
+"]
+	"SUBN 2" -> "SUBN 3" [label="b, X, ⟶
+"]
+	"SUBN 3" -> "SUBN 3" [label="b, b, ⟶
+X, X, ⟶
+"]
+	"SUBN 3" -> "SUBN 4" [label="c, X, ⟶
+"]
+	"SUBN 4" -> "SUBN 5" [label="c, X, ⟶
+"]
+	"SUBN 5" -> "SUBN 6" [label="c, X, ⟶
+"]
+	"SUBN 6" -> "SUBN 6" [label="X, X, ⟵
+a, a, ⟵
+b, b, ⟵
+c, c, ⟵
+"]
+	"SUBN 6" -> S [label="☐, ☐, ⟶
+"]
+	"SUBM 1" -> "SUBM 1" [label="X, X, ⟶
+b, b, ⟶
+"]
+	"SUBM 1" -> "SUBM 2" [label="c, X, ⟶
+"]
+	"SUBM 2" -> "SUBN 6" [label="c, X, ⟵
+"]
+}
