@@ -130,5 +130,5 @@ states = {
 }
 T = turing.machine(states, debug=True)
 T.test("11111011")
-T.plot("machine")
-T.animate("machine.gif")
+T.plot("example1")
+T.animate("example1.gif")

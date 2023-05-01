@@ -1,0 +1,141 @@
+digraph {
+	fake [style=invisible]
+	fake -> S
+	S [labelfontcolor=black root=true shape=circle]
+	subgraph cluster_COPY {
+		label=COPY
+		fontcolor=blue
+		style=dotted
+		"COPY 1" [labelfontcolor=black shape=circle]
+		"COPY 2" [labelfontcolor=black shape=circle]
+		"COPY 3" [labelfontcolor=black shape=circle]
+		"COPY 4" [labelfontcolor=black shape=circle]
+	}
+	subgraph cluster_MOD {
+		label=MOD
+		fontcolor=blue
+		style=dotted
+		"MOD 1" [labelfontcolor=black shape=circle]
+		"MOD 2" [labelfontcolor=black shape=circle]
+		"MOD 3" [labelfontcolor=black shape=circle]
+		"MOD 4" [labelfontcolor=black shape=circle]
+	}
+	subgraph "cluster_N>M" {
+		label="N>M"
+		fontcolor=blue
+		style=dotted
+		"N>M 1" [labelfontcolor=black shape=circle]
+		"N>M 2" [labelfontcolor=black shape=circle]
+		"N>M 3" [labelfontcolor=black shape=circle]
+		"N>M 4" [labelfontcolor=black shape=circle]
+	}
+	subgraph "cluster_M>N" {
+		label="M>N"
+		fontcolor=blue
+		style=dotted
+		"M>N 1" [labelfontcolor=black shape=circle]
+		"M>N 2" [labelfontcolor=black shape=circle]
+		"M>N 3" [labelfontcolor=black shape=circle]
+	}
+	subgraph cluster_END {
+		label=END
+		fontcolor=blue
+		style=dotted
+		"END 1" [labelfontcolor=black shape=circle]
+		"END 2" [labelfontcolor=black shape=circle]
+		"END 3" [labelfontcolor=black shape=doublecircle]
+	}
+	S -> S [label="1, 1, ⟶
+0, 0, ⟶
+"]
+	S -> "COPY 1" [label="☐, 0, ⟵
+"]
+	"COPY 1" -> "COPY 1" [label="1, 1, ⟵
+0, 0, ⟵
+"]
+	"COPY 1" -> "COPY 2" [label="☐, ☐, ⟶
+"]
+	"COPY 2" -> "COPY 3" [label="1, X, ⟶
+"]
+	"COPY 2" -> "MOD 1" [label="0, 0, ⟶
+"]
+	"COPY 3" -> "COPY 3" [label="1, 1, ⟶
+0, 0, ⟶
+"]
+	"COPY 3" -> "COPY 4" [label="☐, 1, ⟵
+"]
+	"COPY 4" -> "COPY 4" [label="1, 1, ⟵
+0, 0, ⟵
+"]
+	"COPY 4" -> "COPY 2" [label="X, X, ⟶
+"]
+	"MOD 1" -> "MOD 2" [label="1, Y, ⟶
+"]
+	"MOD 1" -> "N>M 1" [label="0, 0, ⟶
+"]
+	"MOD 2" -> "MOD 2" [label="1, 1, ⟶
+0, 0, ⟶
+X, X, ⟶
+"]
+	"MOD 2" -> "MOD 3" [label="☐, ☐, ⟵
+"]
+	"MOD 3" -> "MOD 4" [label="1, X, ⟵
+"]
+	"MOD 3" -> "MOD 3" [label="X, X, ⟵
+"]
+	"MOD 3" -> "M>N 1" [label="0, 0, ⟶
+"]
+	"MOD 4" -> "MOD 1" [label="Y, Y, ⟶
+"]
+	"MOD 4" -> "MOD 4" [label="0, 0, ⟵
+1, 1, ⟵
+"]
+	"N>M 1" -> "N>M 1" [label="1, 1, ⟶
+X, X, ⟶
+"]
+	"N>M 1" -> "N>M 2" [label="☐, ☐, ⟵
+"]
+	"N>M 2" -> "N>M 2" [label="X, ☐, ⟵
+"]
+	"N>M 2" -> "N>M 3" [label="1, 1, ⟵
+"]
+	"N>M 2" -> "END 1" [label="0, ☐, ⟵
+"]
+	"N>M 3" -> "N>M 3" [label="0, 0, ⟵
+1, 1, ⟵
+X, X, ⟵
+Y, 1, ⟵
+"]
+	"N>M 3" -> "N>M 4" [label="☐, ☐, ⟶
+"]
+	"N>M 4" -> "N>M 4" [label="X, ☐, ⟶
+"]
+	"N>M 4" -> S [label="0, ☐, ⟶
+"]
+	"M>N 1" -> "M>N 1" [label="X, X, ⟶
+"]
+	"M>N 1" -> "M>N 2" [label="☐, ☐, ⟵
+"]
+	"M>N 2" -> "M>N 2" [label="X, 1, ⟵
+Y, 1, ⟵
+1, 1, ⟵
+0, 0, ⟵
+"]
+	"M>N 2" -> "M>N 3" [label="☐, ☐, ⟶
+"]
+	"M>N 3" -> S [label="0, ☐, ⟶
+"]
+	"M>N 3" -> "M>N 3" [label="1, ☐, ⟶
+"]
+	"END 1" -> "END 1" [label="Y, 1, ⟵
+"]
+	"END 1" -> "END 2" [label="0, 0, ⟵
+"]
+	"END 2" -> "END 2" [label="X, X, ⟵
+"]
+	"END 2" -> "END 3" [label="☐, ☐, ⟶
+"]
+	"END 3" -> "END 3" [label="X, ☐, ⟶
+0, ☐, ⟶
+"]
+}
