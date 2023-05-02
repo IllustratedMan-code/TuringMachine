@@ -1,11 +1,15 @@
 # A Turing Machine in Python
 
 This project is a simple Turing machine that I
-originally wrote to check my homework.
+originally wrote to check my homework. It eventually got a little out of hand,
+and now it can generate animations and state diagrams as well as test.
 
 # Usage
 
-States are defined using a Json syntax (you can actually use Json!).
+- Begins at left-most symbol of input tape
+- States are defined using a python dictionary (you can actually use Json!).
+- Each state has a list of transitions associated with it
+- Transitions are defined as: `["current symbol", "replacement symbol", "direction to move", "next state"]`
 
 ```python
 import turing
@@ -22,14 +26,17 @@ states = { "S": {
     },
 }
 T = turing.machine(states, debug=True)
-T.test("11111011")
 T.plot("state_diagram")
+T.test("11111011")
+# will animate most recent test
 T.animate("usage.gif")
 ```
 
+I'll let the function of the above machine be an exercise for the reader.
+
 # GCD
 
-A common function one might want to implement is the greatest common denominator (GCD) function.
+A common function one might want to implement with a Turing machine is the greatest common denominator (GCD) function.
 
 This is the recursive python version:
 
