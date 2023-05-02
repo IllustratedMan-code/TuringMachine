@@ -43,7 +43,7 @@ gcd(8, 12)
 # outputs 4
 ```
 
-The following Turing machine takes 2 numbers in unary 111111110111111111111 (8,12) and calculates the gcd using a turing machine.
+The following Turing machine takes 2 numbers in unary 111111110111111111111 (8,12) and calculates the GCD.
 
 ![](gcd.png)
 ![](gcd.gif)
