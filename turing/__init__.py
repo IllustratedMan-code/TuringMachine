@@ -35,6 +35,7 @@ class machine:
                  debug=False):
         self.debug = debug
         self.states = states
+        self.transition_tape = []
         self.transition_data = []
         for k, v in states.items():
             if type(v) != state:
@@ -84,9 +85,10 @@ class machine:
         s = f"Transition count:{self.transition_count}\nCurrent state:{self.current_state_name}\ncurrent tape:\n"
         tape = "".join(self.input_tape).replace(" ", "󱞟") + "\n" + " " * len(
             (self.input_tape[:self.pointer])) + "^"
+        self.transition_tape += [tape]
+        self.transition_data += [s]
         s += tape
         self.printif(s)
-        self.transition_data += [s]
 
     def transition_until_stop(self):
         while (True):
@@ -185,20 +187,22 @@ class machine:
     def animate(self, filename=None):
         matplotlib.rcParams['font.family'] = 'monospace'
         fig, ax = plt.subplots()
-        label = ax.text(0, 0, "", ha="left", fontsize=30)
-        ax.set(ylim=(0, 0.5))
+        label = ax.text(0, 0, "", ha="left", fontsize=30, wrap=False)
+        tape = ax.text(0, -1, "", ha="left", fontsize=30)
+        ax.set(ylim=(-1, 0.5))
 
         def animate(i):
             label.set_text(self.transition_data[i])
+            tape.set_text(self.transition_tape[i])
+            tape.set_fontsize(500/len(self.transition_tape[i].split("\n")[0]))
 
         anim = animation.FuncAnimation(fig,
                                        animate,
                                        interval=100,
                                        frames=len(self.transition_data))
         ax.axis('off')
-        fig.tight_layout()
         if filename:
-            writergif = animation.PillowWriter(fps=10)
+            writergif = animation.PillowWriter(fps=20)
             anim.save(filename, writer=writergif)
         else:
             plt.show()
